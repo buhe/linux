@@ -1,5 +1,6 @@
 ## Todo
 - [ ] change os desc
+- [ ] compile kernel and replace it
 
 
 
