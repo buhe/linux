@@ -1,7 +1,7 @@
 ## Todo
 - [x] change os desc
 - [x] compile kernel and replace it
-- [ ] add kernel module
+- [x] add kernel module
 
 
 
