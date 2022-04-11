@@ -2,7 +2,7 @@
 - [x] change os desc
 - [x] compile kernel and replace it
 - [x] add kernel module
-- [ ] add process list kernel module
+- [x] add process list kernel module
 
 
 
