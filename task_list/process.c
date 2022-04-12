@@ -21,7 +21,7 @@ static int simple_init(void)
 {
        printk(KERN_INFO "Loading Module\n");
        for_each_process(task) {
-              printk(KERN_INFO "%d \n", task -> pid);
+              printk(KERN_INFO "%d : %s\n", task -> pid, task -> comm);
        }
        return 0;
 }
