@@ -3,6 +3,7 @@
 - [x] compile kernel and replace it
 - [x] add kernel module
 - [x] add process list kernel module
+- [ ] add custom scheduler
 
 
 
