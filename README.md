@@ -6,6 +6,7 @@
 - [ ] add custom scheduler
     - [ ] find method to test select scheduler
     - [ ] modify kernel code to add a scheduler
+- [ ] add custom memery management
 
 
 
