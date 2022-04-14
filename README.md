@@ -7,6 +7,9 @@
     - [ ] find method to test select scheduler
     - [ ] modify kernel code to add a scheduler
 - [ ] add custom memery management
+- [ ] add some notes
+    - [ ] compile kernel
+    - [ ] note for schedule
 
 
 
