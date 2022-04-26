@@ -47,10 +47,10 @@ static struct proc_dir_entry *proc_sched_add_file_entry;
 
 
 /**External Function Prototypes for Process Queue Functions*/
-// extern int add_process_to_queue(int pid);
+extern int add_process_to_queue(int pid);
 // extern int remove_process_from_queue(int pid);
-// extern int print_process_queue(void);
-// extern int get_first_process_in_queue(void);
+extern int print_process_queue(void);
+extern int get_first_process_in_queue(void);
 // extern int remove_terminated_processes_from_queue(void);
 // extern int change_process_state_in_queue(int pid, int changeState);
 /**
@@ -69,7 +69,7 @@ static ssize_t process_sched_add_module_read(struct file *file, char *buf, size_
 	
 	printk(KERN_INFO "Process Scheduler Add Module read.\n");
 	//print_process_queue();
-	// printk(KERN_INFO "Next Executable PID in the list if RR Scheduling: %d\n", get_first_process_in_queue());
+	printk(KERN_INFO "Next Executable PID in the list if RR Scheduling: %d\n", get_first_process_in_queue());
 	/** Successful execution of read call back. EOF reached.*/
 	return 0;
 }
@@ -100,7 +100,7 @@ static ssize_t process_sched_add_module_write(struct file *file, const char *buf
 	}
 	
 	/**	Add process to the process queue.*/
-	// ret = add_process_to_queue(new_proc_id);
+	ret = add_process_to_queue(new_proc_id);
 	/**Check if the add process to queue method was successful or not.*/
 	if(ret != eExecSuccess) {
 		printk(KERN_ALERT "Process Set ERROR:add_process_to_queue function failed from sched set write method");
