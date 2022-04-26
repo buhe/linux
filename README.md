@@ -3,14 +3,15 @@
 - [x] compile kernel and replace it
 - [x] add kernel module
 - [x] add process list kernel module
-- [ ] add custom scheduler
-    - [ ] find method to test select scheduler
+- [x] add custom scheduler 1
+- [ ] add custom scheduler 2
     - [ ] modify kernel code to add a scheduler
 - [ ] add custom memery management
 - [ ] add some notes
     - [x] compile kernel
     - [x] install kernel module
-    - [ ] note for schedule
+    - [ ] note for schedule 1
+    - [ ] note for schedule 2
 
 
 
