@@ -8,7 +8,8 @@
     - [ ] modify kernel code to add a scheduler
 - [ ] add custom memery management
 - [ ] add some notes
-    - [ ] compile kernel
+    - [x] compile kernel
+    - [x] install kernel module
     - [ ] note for schedule
 
 
