@@ -1,11 +1,40 @@
 ## 内核模块方式
 
-> 参考 https://github.com/m4n1c22/Loadable-Scheduler
+为什么学习 linux kernel ？
+
+- 内核是开源的
+- 内核是硬件和软件的接口
+- 全世界的许多聪明人都参与内核开发，看好代码可以锻炼智力
+- 功利点说，看内核代码的 ROE 比较高，因为相对没那么容易淘汰
+
+内核模块类似插件机制，采用动态加载的形式加载内核模块，内核模块的所有代码运行在内核空间，能直接通过函数调用的形式访问内核的数据。
+
+### 安装内核模块
+
+```
+sudo insmod simple_mod.ko
+```
+
+### 查看内核日志
+
+```
+dmesg
+```
+
+### 卸载内核模块
+
+```
+sudo rmmod simple_mod.ko
+```
+
+
 
 采用内核模块的方式加载一个调度器。思路是这样的：
 
 - 采用 /proc/ 下的虚拟文件系统作为用户空间和内核空间进行数据交换，通过 libc 获取用户空间的进程的 pid 写入 /proc/ 下的一个文件，内核就可以知道需要调度的用户空间进程的 pid 。
 - sched_main 负责调度，通过调用 sched_queue 来改变进程的状态，然后给进程发送信号，内核的调度器接收到信号真正的调度进程
+
+> 参考 https://github.com/m4n1c22/Loadable-Scheduler
 
 这个调度器确切的说，是“假”的，真实的调度还是内核的调度器完成的，这个调度器只是通过给内核发送信号的形式来调度。这个“假”调度器由3个内核模块组成，分别是：sched_file sched_queue sched_main 。下面一个个介绍：
 
@@ -195,7 +224,7 @@ static int __init process_scheduler_module_init(void)
 }
 ```
 
-调度的逻辑在 context_switch 函数。
+调度的逻辑在 context_switch 函数，最后通过 queue_delayed_work 启动 scheduler_hdlr ，开启下一次调度。
 
 ```c
 static void context_switch(struct work_struct *w){
@@ -218,7 +247,12 @@ static void context_switch(struct work_struct *w){
 }
 ```
 
-queue_delayed_work 启动 scheduler_hdlr ，开启下一次调度。
+中间调用 static_round_robin_scheduling 切换进程，逻辑是这样的：
+
+- 尝试从队列中去除已经停止的进程
+- 把当前进程加入队列，前面队列中看到，暂停该进程
+- 获取队列中的第一个进程
+- 运行这个进程
 
 ```c
 int static_round_robin_scheduling(void)
@@ -266,5 +300,7 @@ int static_round_robin_scheduling(void)
 }
 ```
 
-
+> 内核模块在 https://github.com/buhe/study_linux_kernel/tree/rpi-5.15.y/lkm_sched
+>
+> 测试进程在 https://github.com/buhe/study_linux_kernel/tree/rpi-5.15.y/test_prog
 
