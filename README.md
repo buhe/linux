@@ -5,6 +5,7 @@
 - [x] add process list kernel module
 - [x] add custom scheduler 1
 - [ ] add custom scheduler 2
+    - [ ] remove other scheduler expect stop and idle
     - [ ] modify kernel code to add a scheduler
 - [ ] add custom memery management
 - [ ] add some notes
