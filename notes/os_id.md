@@ -9,7 +9,7 @@ CONFIG_LOCALVERSION="-v7l-bugu-os"
 然后编译
 
 ```
-uame -r
+uname -r
 ```
 
 返回类似
